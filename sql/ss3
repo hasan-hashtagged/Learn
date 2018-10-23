@@ -1,0 +1,18 @@
+#! /bin/bash
+#working with database
+MYSQL=`which mysql`
+if [ $# -ne 3 ]
+	then
+		echo "less data entered"
+else
+	stat="INSERT INTO students VALUES ('$1', $2, '$3')"
+	$MYSQL offers -u hasan << EOF
+	$stat
+EOF
+	if [ $? -eq 0 ]
+	then
+		echo "data loaded successfully"
+	else
+		echo "problem"
+	fi
+fi

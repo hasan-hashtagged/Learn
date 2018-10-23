@@ -1,0 +1,112 @@
+MYSQL:
+administrative account : root(different from linux as this has own set of users)
+installing mysql from website www.mysql.com
+*****SPECIAL mysql commands:**********
+commands	shortcuts	description
+?			\?			help
+clear		\c			clear command
+connect		\r			connect to database or server
+delimiter	\d			set sql statement delimiter
+edit		\e			edit the command with commandline parameter
+ego			\G			set to server and displays result vertically
+exit		\q			exit from mysql program
+go			\g			send command to mysql server
+help		\h			display help
+nopager		\n			send output to stdout and disable pager
+note		\t			dont send output to output file
+pager		\p			send pager command to specified program
+print		\P			print the currrent command
+prompt		\R			change mysql command prompt
+quit		\q			same as exit
+rehash		\#			rebuild command completion hash table
+source		\.			execute sql script in specofied file
+status		\s			retrieve the status of mysql server
+system		\!			execute a shell command on system
+tee			\T			append all files to specified file
+use			\u			use another database
+charset		\C			change the charset
+warning		\W			show warning after every statement
+nowarning	\w			dont show warning after every statement
+
+CREATING A USER IN mysql:
+CREATE USER <username>@<hostname> IDENTIFIED BY <password>;
+FLUSH PRIVILEGES;
+LISTING ALL THE USERS IN mysql
+"""""""""""""""""""""
+SELECT USER FROM mysql.user;
+creating database : CREATE database <dbname>;
+GRANT <PRIVILEGES> ON <databse.table> TO <user> IDENTIFIED BY <password>;
+SHOW TABLES;
+USE <DBNAME>;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+postgre sql:
+for manual installation we need to compile the source code.
+to start the server: /usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main -l logfile start
+postgres uses users present as linux users and the administrative account is postgres.
+two types of command:
+standard sql statements
+postgres sql meta-commands(help to extract special information about the sql)
+postgres meta-statement use backslash \? shows all commands
+creating database and user:
+CREATE DATABASE <name>;(logged in as postgres)
+POSTGRESQL uses another layer of control to databases called the schema.
+multiple schema for a database depending on application.
+user accounts are called Login Roles.
+CREATE ROLE <NAME> login; without login parameters it cant login but can be assigned privilege. this type of role is called group role
+::::::::::::::::::::::::::::::::::::::::::::
+CREATING TABLES:
+MYSQL AND POSTGRESQL ARE RELATIONAL DATABASES.(i.e. data is organised by data fields,records and tables).
+data field is a single piece of information.(is defined by a data type)
+record is collection of related data fields.
+table is collection of all such related records.
+CREATE TABLES <tablename> (
+		entries of data fields);
+login as administrative account to create tables
+data types:
+	char fixed string value
+	varchar variable length string value
+	int integer
+	float floating point value
+	Boolean	true false
+	Date	yyyy-mm-dd
+	Time	hhmmss
+	Timestamp	a date and time value together
+	Text	a long string value
+	BLOB	a large binary value such as image or video clip
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+data constraint to restrict the field value
+we have to give previlage to each table we create in postgresql GRANT <PREVILAGE> ON <schema>.tablename TO <username>;
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+inserting and deleting database
+INSERT INTO table VALUES (...); //SQL COMMAND
+DELETE FROM <table> WHERE <datafield> = value; //SQL COMMAND
+QUERYING DATA:
+SELECT <DATAFIELDS> FROM <tablename>; (data fields are comma seperated) //SQL COMMAND
+we can also use MODIFIERS to get the query according to requirement. e.g. WHERE(subset having specific property),LIMIT(subset of reords),ORDER BY,e.t.c
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+USING DATABASES IN SHELL SCRIPTS:
+store the path in variable and use the value to login by providing the user name and necesary information.
+SENDING COMMANDS TO SERVER:
+-e command to send a statement to mysql and exit -c for psql and mention the command in single quotes
+to send multiple statements to sql database we need to use file redirection command(see ss2)
+imp: it should be noted that EOF should not be indented
+the file redirection used for multi command supplies raw data as output which can be further used in scripts
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
+FORMATTING DATA:
+data can be retrived by assigning to variable.
+-B in mysql specifiesto work in batch mode and -s(silent mode)
+we can also use html to redirect it to webpages
+
+
+
+
+
+
+
+
+
+
+
+
+
+

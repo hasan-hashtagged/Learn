@@ -1,0 +1,6 @@
+#! /bin/bash
+MYSQL=`which mysql`
+$MYSQL offers -u root -p <<EOF
+SHOW TABLES;
+SELECT * FROM students;
+EOF
